@@ -19,5 +19,5 @@ df_selected.rename(columns={
 df_selected.drop_duplicates(inplace=True)
 df_selected.dropna(inplace=True)
 df_selected['film_id'] = range(1, len(df_selected) + 1)
-output_file_path = 'dataset_ottimizzato.csv'
+output_file_path = '../dataset_imdb/dataset_ottimizzato.csv'
 df_selected.to_csv(output_file_path, index=False)
