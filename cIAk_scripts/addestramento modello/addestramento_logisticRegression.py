@@ -1,10 +1,10 @@
 import pandas as pd
+import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.linear_model import LogisticRegression
-import joblib
 
 file_path = 'C:/Users/emiio/IdeaProjects/cIAk/dataset_imdb/dataset_ottimizzato.csv'
 df = pd.read_csv(file_path)
