@@ -30,7 +30,6 @@ public class ProiezioneDAO {
         try (Connection connection = ds.getConnection()) {
             connection.setAutoCommit(false);
 
-
             List<Slot> availableSlots = new ArrayList<>();
             try (PreparedStatement psGetSlots = connection.prepareStatement("SELECT id, ora_inizio FROM slot ORDER BY ora_inizio")) {
                 try (ResultSet rs = psGetSlots.executeQuery()) {

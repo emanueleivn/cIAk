@@ -9,6 +9,9 @@
         <webroots>
           <root url="file://$MODULE_DIR$/application/target/application-1.0-SNAPSHOT" relative="/" />
         </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/script" />
+        </sourceRoots>
       </configuration>
     </facet>
     <facet type="web" name="Web3">
@@ -19,6 +22,9 @@
         <webroots>
           <root url="file://$MODULE_DIR$/CineNow/application/src/main/webapp" relative="/" />
         </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/script" />
+        </sourceRoots>
       </configuration>
     </facet>
     <facet type="web" name="Web2">
@@ -29,6 +35,9 @@
         <webroots>
           <root url="file://$MODULE_DIR$/application/src/main/webapp" relative="/" />
         </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/script" />
+        </sourceRoots>
       </configuration>
     </facet>
     <facet type="web" name="Web4">
@@ -39,12 +48,16 @@
         <webroots>
           <root url="file://$MODULE_DIR$/CineNow/application/target/application-1.0-SNAPSHOT" relative="/" />
         </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/script" />
+        </sourceRoots>
       </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/recommendation_service" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/script" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />

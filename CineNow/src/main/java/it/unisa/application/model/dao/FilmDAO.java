@@ -55,6 +55,8 @@ public class FilmDAO {
                         rs.getInt("durata"),
                         rs.getBytes("locandina"),
                         rs.getString("descrizione"),
+                        rs.getString("regista"),
+                        rs.getString("cast"),
                         rs.getBoolean("is_proiettato")
                 );
             }
@@ -79,6 +81,8 @@ public class FilmDAO {
                         rs.getInt("durata"),
                         rs.getBytes("locandina"), // Cambiato da getString a getBytes
                         rs.getString("descrizione"),
+                        rs.getString("regista"),
+                        rs.getString("cast"),
                         rs.getBoolean("is_proiettato")
                 ));
             }

@@ -98,7 +98,7 @@ public class PrenotazioneDAO {
                             rs.getString("film_titolo"),
                             null, null,
                             rs.getInt("durata"),
-                            null, null,
+                            null, null,null,null,
                             false
                     );
 

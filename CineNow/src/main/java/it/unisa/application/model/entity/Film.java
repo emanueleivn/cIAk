@@ -9,14 +9,17 @@ public class Film {
     private byte[] locandina;
     private String descrizione;
     private boolean isProiettato;
+    private String regista;
+    private String cast;
 
-    public Film() {}
+    public Film() {
+    }
 
     public Film(int id) {
         this.id = id;
     }
 
-    public Film(int id, String titolo, String genere, String classificazione, int durata, byte[] locandina, String descrizione, boolean isProiettato) {
+    public Film(int id, String titolo, String genere, String classificazione, int durata, byte[] locandina, String descrizione, String regista, String cast, boolean isProiettato) {
         this.id = id;
         this.titolo = titolo;
         this.genere = genere;
@@ -25,6 +28,8 @@ public class Film {
         this.locandina = locandina;
         this.descrizione = descrizione;
         this.isProiettato = isProiettato;
+        this.regista = regista;
+        this.cast = cast;
     }
 
     public int getId() {
@@ -89,6 +94,22 @@ public class Film {
 
     public void setProiettato(boolean proiettato) {
         isProiettato = proiettato;
+    }
+
+    public String getRegista() {
+        return regista;
+    }
+
+    public void setRegista(String regista) {
+        this.regista = regista;
+    }
+
+    public String getCast() {
+        return cast;
+    }
+
+    public void setCast(String cast) {
+        this.cast = cast;
     }
 
     @Override

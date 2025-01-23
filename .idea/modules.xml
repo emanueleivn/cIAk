@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/cIAk.iml" filepath="$PROJECT_DIR$/.idea/cIAk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/cIAk project.iml" filepath="$PROJECT_DIR$/.idea/cIAk project.iml" />
       <module fileurl="file://$PROJECT_DIR$/cIAk_scripts/cIAk_scripts.iml" filepath="$PROJECT_DIR$/cIAk_scripts/cIAk_scripts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/reccomandation_service/reccomandation_service.iml" filepath="$PROJECT_DIR$/reccomandation_service/reccomandation_service.iml" />
     </modules>
   </component>
 </project>

@@ -87,7 +87,7 @@ public class SedeDAO {
     public List<Film> retrieveFilm(int sedeId) throws SQLException {
         List<Film> filmList = new ArrayList<>();
         String query = """
-                SELECT DISTINCT f.id, f.titolo, f.genere, f.classificazione, f.durata, f.locandina, f.descrizione, f.is_proiettato
+                SELECT DISTINCT f.id, f.titolo, f.genere, f.classificazione, f.durata, f.locandina, f.descrizione,f.regia,f.cast, f.is_proiettato
                 FROM film f
                 JOIN proiezione p ON f.id = p.id_film
                 JOIN sala s ON p.id_sala = s.id
@@ -107,6 +107,8 @@ public class SedeDAO {
                     film.setDurata(rs.getInt("durata"));
                     film.setLocandina(rs.getBytes("locandina"));
                     film.setDescrizione(rs.getString("descrizione"));
+                    film.setRegista(rs.getString("regista"));
+                    film.setCast(rs.getString("cast"));
                     film.setProiettato(rs.getBoolean("is_proiettato"));
                     filmList.add(film);
                 }

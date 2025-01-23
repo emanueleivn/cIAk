@@ -27,7 +27,7 @@ public class CatalogoService {
         if (!validationManager.validate(inputs)) {
             throw new IllegalArgumentException("Parametri non validi per l'aggiunta del film.");
         }
-        Film film = new Film(0, titolo, genere, classificazione, durata, locandina, descrizione, false);
+        Film film = new Film(0, titolo, genere, classificazione, durata, locandina, descrizione,null,null, false);
         if (!filmDAO.create(film)) {
             throw new RuntimeException("Errore durante l'inserimento del film nel catalogo.");
         }

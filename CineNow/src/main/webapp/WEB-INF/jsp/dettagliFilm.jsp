@@ -37,6 +37,8 @@
                 <li style="letter-spacing: 1px;"><strong>Durata:</strong> <%= film.getDurata() %> minuti</li>
                 <li style="letter-spacing: 1px"><strong>Genere:</strong> <%= film.getGenere() %></li>
                 <li style="letter-spacing: 1px"><strong>Classificazione:</strong> <%= film.getClassificazione() %></li>
+                <li style="letter-spacing: 1px"><strong>Regia:</strong> <%= film.getRegista() %></li>
+                <li style="letter-spacing: 1px"><strong>Cast:</strong> <%= film.getCast() %></li>
                 <li>
                     <form method="post" action="${pageContext.request.contextPath}/ProiezioniFilm">
                         <input type="hidden" name="filmId" value="<%= film.getId() %>">
