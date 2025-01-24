@@ -53,14 +53,30 @@ def recommend():
         abort(401, description="Unauthorized")
 
     data = request.json
+
+    # Stampo il payload ricevuto
+    print("[DEBUG] Dati ricevuti (request.json):")
+    print(data)
+
     film_prenotati = pd.DataFrame(data['film_prenotati'])
+    print("\n[DEBUG] Film prenotati (DataFrame):")
+    print(film_prenotati)
 
     generi_prenotati = film_prenotati['genere'].apply(estrai_generi).explode()
     registi_prenotati = film_prenotati['regista']
     cast_prenotati = film_prenotati['cast'].apply(estrai_cast).explode()
+
     contatore_generi = Counter(generi_prenotati)
     contatore_registi = Counter(registi_prenotati)
     contatore_cast = Counter(cast_prenotati)
+
+    # Stampo i contatori
+    print("\n[DEBUG] Contatore generi:")
+    print(contatore_generi)
+    print("[DEBUG] Contatore registi:")
+    print(contatore_registi)
+    print("[DEBUG] Contatore cast:")
+    print(contatore_cast)
 
     preferenze = {
         'generi': contatore_generi,
@@ -68,21 +84,42 @@ def recommend():
         'cast': contatore_cast
     }
 
+    # Recupero dei film dal DB
     nuovi_film = Film.query.filter_by(is_proiettato=True).all()
+
+    # Stampo i film recuperati (solo alcuni campi per leggibilità)
+    print("\n[DEBUG] Film recuperati dal DB (is_proiettato=True):")
+    for f in nuovi_film:
+        print(f"id={f.id}, titolo={f.titolo}, genere={f.genere}, regista={f.regista}")
+
+    # Creazione DataFrame per i film candidati
     nuovi_film_df = pd.DataFrame([{
         'id': film.id,
+        'titolo': film.titolo,  # aggiunto anche 'titolo' per debug
         'genere': film.genere,
         'cast': film.cast,
         'regista': film.regista,
         'durata': film.durata
     } for film in nuovi_film])
 
+    print("\n[DEBUG] DataFrame iniziale (nuovi_film_df):")
+    print(nuovi_film_df)
+
+    # Calcolo similarità
     nuovi_film_df['similarita'] = nuovi_film_df.apply(lambda row: calcola_similarita(row, preferenze), axis=1)
+
+    # Predizione con il modello
     previsioni = model.predict(nuovi_film_df[['genere', 'cast', 'regista', 'durata']])
     nuovi_film_df['consigliato'] = previsioni
     probabilita = model.predict_proba(nuovi_film_df[['genere', 'cast', 'regista', 'durata']])[:, 1]
     nuovi_film_df['probabilita_consigliato'] = probabilita
 
+    print("\n[DEBUG] Previsioni (model.predict):")
+    print(previsioni)
+    print("[DEBUG] Probabilità (model.predict_proba):")
+    print(probabilita)
+
+    # Normalizzazioni
     prob_min = nuovi_film_df['probabilita_consigliato'].min()
     prob_max = nuovi_film_df['probabilita_consigliato'].max()
     if prob_max != prob_min:
@@ -99,10 +136,27 @@ def recommend():
 
     peso_prob = 0.3
     peso_sim = 0.7
-    nuovi_film_df['punteggio_combinato'] = peso_prob * nuovi_film_df['probabilita_normalizzata'] + peso_sim * nuovi_film_df['similarita_normalizzata']
+    nuovi_film_df['punteggio_combinato'] = (
+            peso_prob * nuovi_film_df['probabilita_normalizzata'] +
+            peso_sim * nuovi_film_df['similarita_normalizzata']
+    )
+
+    print("\n[DEBUG] DataFrame dopo i calcoli di similarità e probabilità (nuovi_film_df):")
+    print(nuovi_film_df[[
+        'id', 'titolo', 'genere', 'cast', 'regista', 'similarita',
+        'probabilita_consigliato', 'probabilita_normalizzata',
+        'similarita_normalizzata', 'punteggio_combinato'
+    ]])
+
     top_n = data.get('top_n', 3)
     film_consigliati_df = nuovi_film_df.sort_values(by='punteggio_combinato', ascending=False).head(top_n)
     consigliati = film_consigliati_df.to_dict(orient='records')
+
+    print("\n[DEBUG] Film consigliati (film_consigliati_df):")
+    print(film_consigliati_df)
+    print("[DEBUG] Oggetto finale (consigliati) che verrà restituito in JSON:")
+    print(consigliati)
+
     return jsonify(consigliati)
 
 if __name__ == '__main__':

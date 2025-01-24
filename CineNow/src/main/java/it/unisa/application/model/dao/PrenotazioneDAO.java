@@ -67,6 +67,7 @@ public class PrenotazioneDAO {
                 "sl.ora_inizio, " +
                 "f.id AS film_id, " +
                 "f.titolo AS film_titolo, " +
+                "f.genere AS film_genere, " +
                 "f.durata, " +
                 "s.id AS sala_id, " +
                 "s.numero AS numero_sala, " +
@@ -96,7 +97,7 @@ public class PrenotazioneDAO {
                     Film film = new Film(
                             rs.getInt("film_id"),
                             rs.getString("film_titolo"),
-                            null, null,
+                            rs.getString("film_genere"), null,
                             rs.getInt("durata"),
                             null, null,null,null,
                             false
