@@ -26,7 +26,9 @@ class Film(db.Model):
     is_proiettato = db.Column(db.Boolean, default=False)
 
 def estrai_generi(genere_str):
-    return [g.strip() for g in genere_str.split(',')]
+    if pd.isna(genere_str):
+        return []
+    return [g.strip() for g in genere_str.split(',') if g.strip()]
 
 def estrai_cast(cast_str):
     return [c.strip() for c in cast_str.split(',')]

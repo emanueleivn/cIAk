@@ -1,6 +1,7 @@
 <%@ page import="it.unisa.application.model.entity.Film" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Base64" %>
+<%@ page import="java.util.Set" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -11,6 +12,22 @@
     <title>Catalogo Film</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}static/style/style.css">
+    <style>
+        .recommended-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #ffc107;
+            color: #000;
+            padding: 5px 10px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .film-card {
+            position: relative;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/jsp/header.jsp"/>
@@ -19,12 +36,15 @@
     <div class="row">
         <%
             List<Film> catalogo = (List<Film>) request.getAttribute("catalogo");
+            List<String> consigliati = (List<String>) request.getAttribute("consigliati");
+
             if (catalogo != null && !catalogo.isEmpty()) {
                 for (Film film : catalogo) {
                     String locandinaBase64 = null;
                     if (film.getLocandina() != null) {
                         locandinaBase64 = Base64.getEncoder().encodeToString(film.getLocandina());
                     }
+                    boolean isRecommended = consigliati != null && consigliati.contains(film.getTitolo());
         %>
         <div class="col-md-4 mb-4">
             <form action="${pageContext.request.contextPath}/DettagliFilm" method="post">
@@ -32,6 +52,9 @@
                 <input type="hidden" name="sedeId" value="<%= request.getAttribute("sedeId") %>">
                 <button type="submit" class="film-button" style="border: none;">
                     <div class="film-card">
+                        <% if (isRecommended) { %>
+                        <span class="recommended-badge">Consigliato per te</span>
+                        <% } %>
                         <% if (locandinaBase64 != null) { %>
                         <img src="data:image/jpeg;base64,<%= locandinaBase64 %>"
                              alt="Locandina di <%= film.getTitolo() %>" class="img-fluid">

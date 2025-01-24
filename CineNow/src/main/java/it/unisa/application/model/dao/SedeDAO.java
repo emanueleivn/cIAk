@@ -87,7 +87,7 @@ public class SedeDAO {
     public List<Film> retrieveFilm(int sedeId) throws SQLException {
         List<Film> filmList = new ArrayList<>();
         String query = """
-                SELECT DISTINCT f.id, f.titolo, f.genere, f.classificazione, f.durata, f.locandina, f.descrizione,f.regia,f.cast, f.is_proiettato
+                SELECT DISTINCT f.id, f.titolo, f.genere, f.classificazione, f.durata, f.locandina, f.descrizione,f.regista,f.cast, f.is_proiettato
                 FROM film f
                 JOIN proiezione p ON f.id = p.id_film
                 JOIN sala s ON p.id_sala = s.id
