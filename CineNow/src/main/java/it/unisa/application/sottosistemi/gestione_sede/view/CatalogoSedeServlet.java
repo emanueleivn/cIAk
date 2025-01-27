@@ -65,6 +65,20 @@ public class CatalogoSedeServlet extends HttpServlet {
             }
         }
         if (catalogo != null) {
+            List<String> consigliati = (List<String>) req.getAttribute("consigliati");
+            if(consigliati != null && !consigliati.isEmpty()) {
+                catalogo.sort((film1, film2) -> {
+                    boolean f1Consigliato = consigliati.contains(film1.getTitolo());
+                    boolean f2Consigliato = consigliati.contains(film2.getTitolo());
+                    if (f1Consigliato && !f2Consigliato) {
+                        return -1;
+                    }
+                    if (f2Consigliato && !f1Consigliato) {
+                        return 1;
+                    }
+                    return 0;
+                });
+            }
             req.setAttribute("catalogo", catalogo);
             req.getRequestDispatcher("/WEB-INF/jsp/catalogoSede.jsp").forward(req, resp);
         } else {

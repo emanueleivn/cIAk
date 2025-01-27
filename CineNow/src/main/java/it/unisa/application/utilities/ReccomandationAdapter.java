@@ -42,7 +42,7 @@ public class ReccomandationAdapter {
                 filmPrenotatiArray.put(filmJson);
             }
             requestBody.put("film_prenotati", filmPrenotatiArray);
-            requestBody.put("top_n", 3);
+            requestBody.put("soglia", 0.5);
             URL url = new URL(RECOMMENDATION_URL);
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");

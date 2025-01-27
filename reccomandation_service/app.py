@@ -148,15 +148,14 @@ def recommend():
         'similarita_normalizzata', 'punteggio_combinato'
     ]])
 
-    top_n = data.get('top_n', 3)
-    film_consigliati_df = nuovi_film_df.sort_values(by='punteggio_combinato', ascending=False).head(top_n)
+    soglia = data.get('soglia', 0.5)
+    film_consigliati_df = nuovi_film_df[nuovi_film_df['punteggio_combinato'] >= soglia]
+    film_consigliati_df = film_consigliati_df.sort_values(by='punteggio_combinato', ascending=False)
     consigliati = film_consigliati_df.to_dict(orient='records')
-
     print("\n[DEBUG] Film consigliati (film_consigliati_df):")
     print(film_consigliati_df)
     print("[DEBUG] Oggetto finale (consigliati) che verrà restituito in JSON:")
     print(consigliati)
-
     return jsonify(consigliati)
 
 if __name__ == '__main__':
