@@ -15,7 +15,7 @@ La repository è organizzata come segue:
 - **`dataset_imdb/`**: Contiene il dataset ottimizzato utilizzato per l'addestramento del modello.
   - [`dataset_ottimizzato.csv`](https://github.com/emanueleivn/cIAk/blob/main/dataset_imdb/dataset_ottimizzato.csv): Dataset preprocessato.
   
-- **`cIAk_scripts/`**: Script di implementazione e testing.
+- **`cIAk_scripts/`**: Script di implementazione , valutazione degli algoritmi e orrimizzazione del dataset.
   - [`uso_modello.py`](https://github.com/emanueleivn/cIAk/blob/main/cIAk_scripts/uso_modello.py): Script per testare il modello con le preferenze simulate di un utente.
   
 - **`model/`**: File del modello addestrato.
