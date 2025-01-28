@@ -62,10 +62,10 @@ Per eseguire il progetto, segui questi passaggi:
    python uso_modello.py
    ```
 4. **Avviare script SQL**
-  - [`CineNowScript`](https://github.com/emanueleivn/cIAk/blob/main/dataset_imdb/dataset_ottimizzato.csv): Dataset preprocessato.
+  - [`CineNowScript`]([https://github.com/emanueleivn/cIAk/blob/main/dataset_imdb/dataset_ottimizzato.csv](https://github.com/emanueleivn/cIAk/blob/main/CineNow/CineNowScript.sql)): Script creazione e popolamento database.
 5. **Integrazione con CineNow:**
    - Integra il server Flask con il sistema **CineNow** utilizzando l'endpoint REST `/recommend`.
-   - Consulta la documentazione su [CineNow](https://github.com/emanueleivn/CineNow) per dettagli sull'integrazione.
+   - Consulta la documentazione su [CineNow](https://github.com/emanueleivn/CineNow) per ulteriori dettagli sul sistema.
 
 ---
 
