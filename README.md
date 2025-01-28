@@ -61,8 +61,9 @@ Per eseguire il progetto, segui questi passaggi:
    cd ../cIAk_scripts
    python uso_modello.py
    ```
-
-4. **Integrazione con CineNow:**
+4. **Avviare script SQL**
+  - [`CineNowScript`](https://github.com/emanueleivn/cIAk/blob/main/dataset_imdb/dataset_ottimizzato.csv): Dataset preprocessato.
+5. **Integrazione con CineNow:**
    - Integra il server Flask con il sistema **CineNow** utilizzando l'endpoint REST `/recommend`.
    - Consulta la documentazione su [CineNow](https://github.com/emanueleivn/CineNow) per dettagli sull'integrazione.
 
@@ -83,6 +84,3 @@ Puoi clonare la repository con il seguente comando:
 git clone https://github.com/emanueleivn/cIAk.git
 ```
 
----
-
-Se ci sono ulteriori dettagli o modifiche che desideri aggiungere, fammi sapere! 😊
