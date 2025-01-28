@@ -53,20 +53,14 @@ def recommend():
         abort(401, description="Unauthorized")
 
     data = request.json
-
-    print("\n[DEBUG - REQUEST DATA] Dati ricevuti dalla richiesta:")
-    print(data)
-
+    print("\n[DEBUG - REQUEST DATA] Dati ricevuti dalla richiesta.")
     film_prenotati = pd.DataFrame(data['film_prenotati'])
-
     generi_prenotati = film_prenotati['genere'].apply(estrai_generi).explode()
     registi_prenotati = film_prenotati['regista']
     cast_prenotati = film_prenotati['cast'].apply(estrai_cast).explode()
-
     contatore_generi = Counter(generi_prenotati)
     contatore_registi = Counter(registi_prenotati)
     contatore_cast = Counter(cast_prenotati)
-
     preferenze = {
         'generi': contatore_generi,
         'registi': contatore_registi,
@@ -74,7 +68,6 @@ def recommend():
     }
 
     nuovi_film = Film.query.filter_by(is_proiettato=True).all()
-
     print("\n[DEBUG - FILM DATABASE] Film ottenuti dal database (is_proiettato=True):")
     for film in nuovi_film:
         print(f"ID: {film.id}, Titolo: {film.titolo}, Genere: {film.genere}, Regista: {film.regista}")
@@ -115,8 +108,8 @@ def recommend():
     else:
         nuovi_film_df['similarita_normalizzata'] = 0.0
 
-    peso_prob = 0.3
-    peso_sim = 0.7
+    peso_prob = 0.4
+    peso_sim = 0.6
     nuovi_film_df['punteggio_combinato'] = (
             peso_prob * nuovi_film_df['probabilita_normalizzata'] +
             peso_sim * nuovi_film_df['similarita_normalizzata']

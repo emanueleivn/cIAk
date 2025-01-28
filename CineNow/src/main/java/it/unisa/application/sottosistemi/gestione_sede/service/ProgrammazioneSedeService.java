@@ -48,6 +48,7 @@ public class ProgrammazioneSedeService {
         } catch (SQLException e) {
             return null;
         }
+        catalogo.removeIf(film -> !film.isProiettato());
         return catalogo;
     }
 }
