@@ -10,6 +10,13 @@
 <body>
 <div class="container my-5">
   <div class="text-center my-5">
+    <%
+      if (clienteLoggato != null){
+    %>
+    <h1>Benvenuto <%=clienteLoggato.getNome()%>!</h1>
+    <%}%>
+  </div>
+  <div class="text-center my-5">
     <img src="static/images/logo.png" alt="CineNow Logo" style="height: 300px;">
   </div>
   <div id="carouselExampleRide" class="carousel slide my-5" data-bs-ride="carousel">

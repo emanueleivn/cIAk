@@ -27,7 +27,7 @@ public class StoricoOrdiniServlet extends HttpServlet {
             }
 
             List<Prenotazione> storico = storicoOrdiniService.storicoOrdini(cliente);
-            request.setAttribute("storico", storico);
+            request.setAttribute("storico", storico.reversed());
             request.getRequestDispatcher("/WEB-INF/jsp/storicoOrdini.jsp").forward(request, response);
 
         } catch (IllegalArgumentException e) {
