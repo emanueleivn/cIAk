@@ -1,5 +1,5 @@
 # cIAk - Sistema di Raccomandazione di Film
-![Logo progetto]((https://github.com/emanueleivn/cIAk/blob/main/ciak_logo.png)
+![Logo progetto](https://github.com/emanueleivn/cIAk/blob/main/ciak_logo.png)
 
 Repository ufficiale del progetto **cIAk**, sviluppato per il corso di Fondamenti di Intelligenza Artificiale presso l'Università degli Studi di Salerno (AA 2024/2025).
 
